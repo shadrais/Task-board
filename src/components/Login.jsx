@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -8,6 +9,7 @@ const Login = () => {
   const [form, setForm] = useState({ password: '', email: '' })
 
   const { password, email } = form
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
@@ -17,6 +19,8 @@ const Login = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
+
+    setLoading(true)
     try {
       const auth = getAuth()
       const userCredential = await signInWithEmailAndPassword(
@@ -26,11 +30,20 @@ const Login = () => {
       )
 
       if (userCredential.user) {
+        setLoading(false)
         navigate('/')
       }
     } catch (error) {
-      toast.error('Wrong')
+      toast.error('Wrong Credentials')
     }
+  }
+
+  if (loading) {
+    return (
+      <div className='min-w-full flex'>
+        <progress className='progress  w-56 mx-auto mt-48 '></progress>
+      </div>
+    )
   }
 
   return (
@@ -53,6 +66,7 @@ const Login = () => {
             type='email'
             value={email}
             onChange={onChange}
+            required
           />
         </div>
         <div className='mb-6'>
@@ -68,6 +82,7 @@ const Login = () => {
             placeholder={password}
             value={password}
             onChange={onChange}
+            required
           />
         </div>
         <div className='flex items-center justify-between'>

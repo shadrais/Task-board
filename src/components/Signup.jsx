@@ -8,9 +8,12 @@ import { db } from '../firebase.config'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { serverTimestamp, setDoc, doc } from 'firebase/firestore'
+import { toast } from 'react-toastify'
 
 const Signup = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' })
+
+  const [loading, setLoading] = useState(true)
 
   const { name, email, password } = form
   const navigate = useNavigate()
@@ -20,6 +23,8 @@ const Signup = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault()
+
+    setLoading(true)
     try {
       const auth = getAuth()
       const userCredentials = await createUserWithEmailAndPassword(
@@ -35,10 +40,19 @@ const Signup = () => {
       formCopy.timestamp = serverTimestamp()
       const docRef = doc(db, 'users', user.uid)
       await setDoc(docRef, formCopy)
+      setLoading(false)
       navigate('/')
     } catch (error) {
       console.log(error)
     }
+  }
+
+  if (loading) {
+    return (
+      <div className='min-w-full flex'>
+        <progress className='progress  w-56 mx-auto mt-48 '></progress>
+      </div>
+    )
   }
 
   return (
@@ -59,9 +73,9 @@ const Signup = () => {
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
             id='name'
             type='text'
-            placeholder='Name'
             value={name}
             onChange={onChange}
+            required
           />
         </div>
         <div className='mb-4'>
@@ -74,9 +88,9 @@ const Signup = () => {
             className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
             id='email'
             type='email'
-            placeholder='email'
             value={email}
             onChange={onChange}
+            required
           />
         </div>
         <div className='mb-6'>
@@ -86,16 +100,14 @@ const Signup = () => {
             Password
           </label>
           <input
-            className='shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
+            className='shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
             id='password'
             type='password'
-            placeholder='Set Password'
             value={password}
             onChange={onChange}
+            required
+            minLength={6}
           />
-          <p className='text-red-500 text-xs italic'>
-            Please choose a password.
-          </p>
         </div>
         <div className='flex items-center justify-between'>
           <button
@@ -111,7 +123,7 @@ const Signup = () => {
         </div>
       </form>
       <p className='text-center text-gray-500 text-xs'>
-        &copy;2022 Made with Love by Shad.
+        &copy;2022 Made by Shad.
       </p>
     </div>
   )
