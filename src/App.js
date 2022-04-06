@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { ToastContainer } from 'react-toastify'
+import { CalendarContextProvider } from './context/CalendarContext'
+import TaskBoard from './components/TaskBoard'
+import Login from './components/Login'
+import Navbar from './components/Navbar'
+import Signup from './components/Signup'
+import 'react-toastify/dist/ReactToastify.css'
 
-function App() {
+const App = () => {
+  const [SignedIn, setSignedIn] = useState(false)
+  const auth = getAuth()
+  onAuthStateChanged(auth, (user) => {
+    if (user) setSignedIn(true)
+    else setSignedIn(false)
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <CalendarContextProvider>
+      <Router>
+        <Navbar SignedIn={SignedIn} />
+        <Routes>
+          <Route path='/' element={<TaskBoard SignedIn={SignedIn} />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/sign-up' element={<Signup />} />
+        </Routes>
+      </Router>
+      <ToastContainer />
+    </CalendarContextProvider>
+  )
 }
 
-export default App;
+export default App
