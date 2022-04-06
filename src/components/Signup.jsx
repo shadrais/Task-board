@@ -13,7 +13,7 @@ import { toast } from 'react-toastify'
 const Signup = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' })
 
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const { name, email, password } = form
   const navigate = useNavigate()
@@ -40,10 +40,11 @@ const Signup = () => {
       formCopy.timestamp = serverTimestamp()
       const docRef = doc(db, 'users', user.uid)
       await setDoc(docRef, formCopy)
+      toast.success('Logged In')
       setLoading(false)
       navigate('/')
     } catch (error) {
-      console.log(error)
+      toast.error('Something went wrong')
     }
   }
 
@@ -56,7 +57,7 @@ const Signup = () => {
   }
 
   return (
-    <div className=' w-full max-w-md m-auto top-20 relative'>
+    <div className=' w-full max-w-xs m-auto  relative sm:top-20 sm:max-w-md'>
       <form
         onSubmit={onSubmit}
         className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>

@@ -9,7 +9,9 @@ const TaskBoard = ({ SignedIn }) => {
       <div className='hero mx-auto mt-10 rounded-lg  w-2/3 bg-base-200'>
         <div className='hero-content  text-center'>
           <div className='max-w-md'>
-            <h1 className='text-5xl mb-5 font-bold'>Login to Continue</h1>
+            <h1 className='text-2xl mb-5 font-bold md:text-5xl '>
+              Login to Continue
+            </h1>
             <button
               className='btn btn-primary'
               onClick={() => {

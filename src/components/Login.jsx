@@ -34,6 +34,7 @@ const Login = () => {
         navigate('/')
       }
     } catch (error) {
+      setLoading(false)
       toast.error('Wrong Credentials')
     }
   }
@@ -47,7 +48,7 @@ const Login = () => {
   }
 
   return (
-    <div className=' w-full max-w-md m-auto top-20 relative'>
+    <div className='w-full max-w-xs m-auto  relative sm:top-20 sm:max-w-md  '>
       <form
         onSubmit={onSubmit}
         className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>

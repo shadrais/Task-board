@@ -16,31 +16,40 @@ const Navbar = ({ SignedIn }) => {
   }
 
   return (
-    <div className='navbar bg-neutral text-neutral-content m-3 rounded w-11/12 mx-auto h-28 '>
+    <div className='navbar bg-neutral text-neutral-content m-3 rounded w-11/12 mx-auto h-18 sm:h-28 '>
       <div className='flex-1'>
-        <a href='/' className='btn btn-ghost normal-case text-xl'>
+        <Link to='/' className='btn btn-ghost normal-case text-md md:text-xl'>
           TaskBoard
-        </a>
+        </Link>
       </div>
       <div className='flex-none'>
         <ul className='menu menu-horizontal p-0'>
           {SignedIn ? (
             <>
               <div className='avatar'>
-                <div className='w-24 rounded-full'>
+                <div className='w-12 rounded-full sm:w-24'>
                   <img src={image} alt='profile' />
                 </div>
               </div>
               <li>
-                <button className='btn m-auto text-xl ml-2 ' onClick={signOut}>
+                <button
+                  className='btn m-auto text-md ml-2 sm:text-xl '
+                  onClick={signOut}>
                   Logout
                 </button>
               </li>
             </>
           ) : (
-            <Link to='/login'>
-              <button className='btn m-auto text-xl ml-2 '>Login</button>
-            </Link>
+            <>
+              <Link
+                to='/sign-up'
+                className='btn m-auto text-md ml-2 sm:text-xl'>
+                Sign Up
+              </Link>
+              <Link to='/login' className='btn m-auto text-md ml-2 sm:text-xl'>
+                Login
+              </Link>
+            </>
           )}
           <li></li>
         </ul>
