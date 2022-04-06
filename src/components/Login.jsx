@@ -30,6 +30,7 @@ const Login = () => {
       )
 
       if (userCredential.user) {
+        toast.success('Loggen in')
         setLoading(false)
         navigate('/')
       }

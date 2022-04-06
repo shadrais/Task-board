@@ -27,7 +27,7 @@ const App = () => {
           <Route path='/sign-up' element={<Signup />} />
         </Routes>
       </Router>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} theme='colored' />
     </CalendarContextProvider>
   )
 }

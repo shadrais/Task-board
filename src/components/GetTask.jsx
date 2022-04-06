@@ -12,7 +12,7 @@ import {
   deleteDoc,
 } from 'firebase/firestore'
 import { db } from '../firebase.config'
-import { MdOutlineModeEdit } from 'react-icons/md'
+import { RiDeleteBin5Fill } from 'react-icons/ri'
 
 const GetTask = () => {
   const [data, setData] = useState(null)
@@ -90,7 +90,7 @@ const GetTask = () => {
             {task.task}
           </p>
           <button className='btn' id={id} onClick={onDelete}>
-            <MdOutlineModeEdit className='text-xl' />
+            <RiDeleteBin5Fill className='text-xl' />
           </button>
         </div>
       ))}
