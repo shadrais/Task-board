@@ -1,8 +1,12 @@
+import { useContext } from 'react'
+import CalendarContext from '../context/CalendarContext'
 import AddTask from './AddTask'
 import GetTask from './GetTask'
 import { useNavigate } from 'react-router-dom'
 
-const TaskBoard = ({ SignedIn }) => {
+const TaskBoard = () => {
+  const { SignedIn } = useContext(CalendarContext)
+
   const navigate = useNavigate()
   if (!SignedIn) {
     return (
@@ -26,12 +30,14 @@ const TaskBoard = ({ SignedIn }) => {
   }
 
   return (
-    <div className='card max-w-lg bg-neutral text-neutral-content shadow-xl mx-auto my-10'>
-      <div className='card-body '>
-        <h2 className='card-title'>My Task</h2>
+    <div className='mx-3'>
+      <div className='card max-w-lg bg-neutral text-neutral-content shadow-xl mx-auto my-10'>
+        <div className='card-body '>
+          <h2 className='card-title text-md md:text-xl'>My Task</h2>
+        </div>
+        <AddTask />
+        <GetTask />
       </div>
-      <AddTask />
-      <GetTask />
     </div>
   )
 }

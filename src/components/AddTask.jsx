@@ -34,18 +34,21 @@ const AddTask = () => {
   }
 
   return (
-    <div className='flex justify-center flex-wrap '>
+    <div className='flex justify-center  '>
       <input
         type='text'
         placeholder='Add Task'
-        className='input input-bordered input-primary w-full max-w-xs text-black'
+        className='input input-bordered input-primary basis-4/5 sm:max-w-full  ml-6  max-w-xs text-black'
         value={task}
         onChange={(e) => {
           setFeild((prevState) => ({ ...prevState, task: e.target.value }))
         }}
       />
-      <button type='button' onClick={addTask} className='btn  mb-5 ml-2'>
-        <FaPlusCircle className='text-3xl' />
+      <button
+        type='button'
+        onClick={addTask}
+        className='btn  mb-5 ml-2 mr-2 xs:mr-0'>
+        <FaPlusCircle className='text-xl sm:text-3xl' />
       </button>
     </div>
   )

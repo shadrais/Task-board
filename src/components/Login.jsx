@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-
+import React, { useState, useContext, useEffect } from 'react'
+import CalendarContext from '../context/CalendarContext'
 import { toast } from 'react-toastify'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -10,12 +10,17 @@ const Login = () => {
 
   const { password, email } = form
   const [loading, setLoading] = useState(false)
-
+  const { SignedIn, fetchImage } = useContext(CalendarContext)
   const navigate = useNavigate()
 
   const onChange = (e) => {
     setForm((prevState) => ({ ...prevState, [e.target.id]: e.target.value }))
   }
+  useEffect(() => {
+    if (SignedIn) {
+      navigate('/')
+    }
+  })
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -31,6 +36,7 @@ const Login = () => {
 
       if (userCredential.user) {
         toast.success('Loggen in')
+        fetchImage()
         setLoading(false)
         navigate('/')
       }
@@ -53,7 +59,7 @@ const Login = () => {
       <form
         onSubmit={onSubmit}
         className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
-        <h2 className='card-body text-center font-bold text-3xl my-auto'>
+        <h2 className='card-body text-center font-bold text-2xl sm:text-3xl my-auto'>
           Login
         </h2>
         <div className='mb-4'>
@@ -89,12 +95,12 @@ const Login = () => {
         </div>
         <div className='flex items-center justify-between'>
           <button
-            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            className='bg-blue-500 text-xs sm:text-xl hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
             type='submit'>
             Sign In
           </button>
           <Link
-            className='inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800'
+            className='inline-block text-xs  align-baseline font-bold sm:text-sm text-blue-500 hover:text-blue-800'
             to='/sign-up'>
             Don't have an account?
           </Link>

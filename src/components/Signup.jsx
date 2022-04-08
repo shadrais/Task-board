@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
 } from 'firebase/auth'
+import CalendarContext from '../context/CalendarContext'
 import { db } from '../firebase.config'
 
 import { Link, useNavigate } from 'react-router-dom'
@@ -14,12 +15,17 @@ const Signup = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' })
 
   const [loading, setLoading] = useState(false)
-
+  const { fetchImage, SignedIn } = useContext(CalendarContext)
   const { name, email, password } = form
   const navigate = useNavigate()
   const onChange = (e) => {
     setForm((prevState) => ({ ...prevState, [e.target.id]: e.target.value }))
   }
+  useEffect(() => {
+    if (SignedIn) {
+      navigate('/')
+    }
+  })
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -41,6 +47,7 @@ const Signup = () => {
       const docRef = doc(db, 'users', user.uid)
       await setDoc(docRef, formCopy)
       toast.success('Logged In')
+      fetchImage()
       setLoading(false)
       navigate('/')
     } catch (error) {
@@ -61,7 +68,7 @@ const Signup = () => {
       <form
         onSubmit={onSubmit}
         className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
-        <h2 className='card-body text-center font-bold text-3xl my-auto'>
+        <h2 className='card-body text-center font-bold text-2xl sm:text-3xl my-auto'>
           Sign Up
         </h2>
         <div className='mb-4'>
@@ -112,12 +119,12 @@ const Signup = () => {
         </div>
         <div className='flex items-center justify-between'>
           <button
-            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            className='bg-blue-500 text-sm sm:text-lg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
             type='submit'>
             Sign Up
           </button>
           <Link
-            className='inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800'
+            className='inline-block align-baseline text-xs font-bold sm:text-sm text-blue-500 hover:text-blue-800'
             to='/login'>
             Already have an account?
           </Link>

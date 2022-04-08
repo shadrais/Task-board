@@ -3,10 +3,10 @@ import { getAuth } from 'firebase/auth'
 import { useContext } from 'react'
 import CalendarContext from '../context/CalendarContext'
 
-const Navbar = ({ SignedIn }) => {
+const Navbar = () => {
   const auth = getAuth()
 
-  const { image } = useContext(CalendarContext)
+  const { image, SignedIn } = useContext(CalendarContext)
 
   const navigate = useNavigate()
 

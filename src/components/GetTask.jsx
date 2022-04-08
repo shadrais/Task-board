@@ -72,7 +72,7 @@ const GetTask = () => {
       {data.map(({ task, id }) => (
         <div
           key={id}
-          className='card my-5 mx-auto h-20 w-11/12 items-center border-2 flex-row justify-around'>
+          className='card my-5 mx-auto h-16 sm:h-20 w-11/12 items-center border-2 flex-row justify-around'>
           <input
             type='checkbox'
             id={id}
@@ -84,7 +84,7 @@ const GetTask = () => {
             className='checkbox checkbox-secondary'
           />
           <p
-            className={`py-3 text-2xl  ${
+            className={`py-3 text-md md:text-2xl   ${
               task.completed ? 'line-through' : 'font-bold'
             }`}>
             {task.task}
