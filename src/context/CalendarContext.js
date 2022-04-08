@@ -4,6 +4,7 @@ const CalendarContext = createContext()
 
 export const CalendarContextProvider = ({ children }) => {
   const [image, setImage] = useState('')
+  const [refresh, setRefresh] = useState(true)
 
   const [SignedIn, setSignedIn] = useState(false)
   useEffect(() => {
@@ -22,6 +23,11 @@ export const CalendarContextProvider = ({ children }) => {
       .then(({ download_url }) => {
         setImage(download_url)
       })
+  }
+
+  if (SignedIn && refresh) {
+    fetchImage()
+    setRefresh(false)
   }
 
   const clearImage = (second) => {

@@ -15,7 +15,7 @@ const Signup = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' })
 
   const [loading, setLoading] = useState(false)
-  const { fetchImage, SignedIn } = useContext(CalendarContext)
+  const { SignedIn } = useContext(CalendarContext)
   const { name, email, password } = form
   const navigate = useNavigate()
   const onChange = (e) => {
@@ -47,7 +47,7 @@ const Signup = () => {
       const docRef = doc(db, 'users', user.uid)
       await setDoc(docRef, formCopy)
       toast.success('Logged In')
-      fetchImage()
+
       setLoading(false)
       navigate('/')
     } catch (error) {

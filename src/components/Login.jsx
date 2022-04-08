@@ -10,7 +10,7 @@ const Login = () => {
 
   const { password, email } = form
   const [loading, setLoading] = useState(false)
-  const { SignedIn, fetchImage } = useContext(CalendarContext)
+  const { SignedIn } = useContext(CalendarContext)
   const navigate = useNavigate()
 
   const onChange = (e) => {
@@ -36,7 +36,7 @@ const Login = () => {
 
       if (userCredential.user) {
         toast.success('Loggen in')
-        fetchImage()
+
         setLoading(false)
         navigate('/')
       }
