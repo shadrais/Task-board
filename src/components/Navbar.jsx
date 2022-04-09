@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <div className='navbar bg-neutral text-neutral-content m-3 rounded w-11/12 mx-auto h-18 sm:h-28 '>
       <div className='flex-1'>
-        <Link to='/' className='btn btn-ghost normal-case text-md md:text-xl'>
+        <Link to='/' className='btn btn-ghost normal-case text-md sm:text-xl'>
           TaskBoard
         </Link>
       </div>

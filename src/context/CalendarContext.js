@@ -21,7 +21,7 @@ export const CalendarContextProvider = ({ children }) => {
   }, [auth])
   const fetchImage = () => {
     let randomValue = Math.floor(Math.random() * 999)
-    console.log('Fetching')
+
     fetch(`https://picsum.photos/id/${randomValue}/info`)
       .then((res) => res.json())
       .then(({ download_url }) => {

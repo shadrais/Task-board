@@ -39,9 +39,9 @@ const GetTask = () => {
       })
     }
     if (SignedIn) {
-      console.log(console.log(SignedIn))
       fetchData()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [SignedIn])
 
   if (!data) {

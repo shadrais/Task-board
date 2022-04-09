@@ -47,10 +47,10 @@ const Signup = () => {
       const docRef = doc(db, 'users', user.uid)
       await setDoc(docRef, formCopy)
       toast.success('Logged In')
-
       setLoading(false)
       navigate('/')
     } catch (error) {
+      setLoading(false)
       toast.error('Something went wrong')
     }
   }
@@ -124,7 +124,7 @@ const Signup = () => {
             Sign Up
           </button>
           <Link
-            className='btn pt-3 inline-block text-xs  align-baseline font-bold sm:text-sm'
+            className='btn pt-3 w-3/5 sm:w-fit inline-block text-xs  align-baseline font-bold sm:text-sm'
             to='/login'>
             Already have an account?
           </Link>
