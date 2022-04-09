@@ -8,7 +8,7 @@ const PrivateRoute = () => {
   if (checkStatus) {
     return (
       <div className='min-w-full flex'>
-        <progress className='progress  w-56 mx-auto mt-48 '></progress>
+        <progress className='progress progress-primary w-56 mx-auto mt-48 '></progress>
       </div>
     )
   }

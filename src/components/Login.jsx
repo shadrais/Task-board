@@ -49,7 +49,7 @@ const Login = () => {
   if (loading) {
     return (
       <div className='min-w-full flex'>
-        <progress className='progress  w-56 mx-auto mt-48 '></progress>
+        <progress className='progress progress-primary  w-56 mx-auto mt-48 '></progress>
       </div>
     )
   }
@@ -59,17 +59,17 @@ const Login = () => {
       <form
         onSubmit={onSubmit}
         className=' bg-neutral shadow-md rounded px-8 pt-6 pb-8 mb-4'>
-        <h2 className='card-body text-center font-bold text-2xl sm:text-3xl my-auto'>
+        <h2 className='card-body  text-neutral-content text-center font-bold text-2xl sm:text-3xl my-auto'>
           Login
         </h2>
         <div className='mb-4'>
           <label
-            className='block text-gray-700 text-sm font-bold mb-2'
+            className='block  text-neutral-content text-sm font-bold mb-2'
             htmlFor='email'>
             Email
           </label>
           <input
-            className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='input input-bordered input-secondary  w-full max-w-full'
             id='email'
             type='email'
             value={email}
@@ -79,12 +79,12 @@ const Login = () => {
         </div>
         <div className='mb-6'>
           <label
-            className='block text-gray-700 text-sm font-bold mb-2'
+            className='block  text-neutral-content text-sm font-bold mb-2'
             htmlFor='password'>
             Password
           </label>
           <input
-            className='shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline'
+            className='input input-bordered input-secondary  w-full max-w-full'
             id='password'
             type='password'
             placeholder={password}
@@ -95,12 +95,12 @@ const Login = () => {
         </div>
         <div className='flex items-center justify-between'>
           <button
-            className='btn btn-secondary text-xs sm:text-xl  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            className='btn btn-primary text-xs sm:text-xl  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
             type='submit'>
             Sign In
           </button>
           <Link
-            className='inline-block text-xs  align-baseline font-bold sm:text-sm text-blue-500 hover:text-blue-800'
+            className='btn pt-3 inline-block text-xs  align-baseline font-bold sm:text-sm '
             to='/sign-up'>
             Don't have an account?
           </Link>
