@@ -5,6 +5,7 @@ const CalendarContext = createContext()
 export const CalendarContextProvider = ({ children }) => {
   const [image, setImage] = useState('')
   const [refresh, setRefresh] = useState(true)
+  const [checkStatus, setCheckStatus] = useState(true)
 
   const [SignedIn, setSignedIn] = useState(false)
   useEffect(() => {
@@ -12,7 +13,8 @@ export const CalendarContextProvider = ({ children }) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setSignedIn(true)
-      } else setSignedIn(false)
+      }
+      setCheckStatus(false)
     })
   })
   const fetchImage = () => {
@@ -36,7 +38,7 @@ export const CalendarContextProvider = ({ children }) => {
 
   return (
     <CalendarContext.Provider
-      value={{ image, SignedIn, fetchImage, clearImage }}>
+      value={{ image, SignedIn, fetchImage, clearImage, checkStatus }}>
       {children}
     </CalendarContext.Provider>
   )

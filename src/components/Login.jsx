@@ -58,7 +58,7 @@ const Login = () => {
     <div className='w-full max-w-xs m-auto  relative sm:top-20 sm:max-w-md  '>
       <form
         onSubmit={onSubmit}
-        className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
+        className=' bg-neutral shadow-md rounded px-8 pt-6 pb-8 mb-4'>
         <h2 className='card-body text-center font-bold text-2xl sm:text-3xl my-auto'>
           Login
         </h2>
@@ -95,7 +95,7 @@ const Login = () => {
         </div>
         <div className='flex items-center justify-between'>
           <button
-            className='bg-blue-500 text-xs sm:text-xl hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+            className='btn btn-secondary text-xs sm:text-xl  font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
             type='submit'>
             Sign In
           </button>

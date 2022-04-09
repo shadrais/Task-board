@@ -5,6 +5,7 @@ import Login from './components/Login'
 import Navbar from './components/Navbar'
 import Signup from './components/Signup'
 import 'react-toastify/dist/ReactToastify.css'
+import PrivateRoute from './components/PrivateRoute'
 
 const App = () => {
   return (
@@ -12,7 +13,9 @@ const App = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route path='/' element={<TaskBoard />} />
+          <Route path='/' element={<PrivateRoute />}>
+            <Route path='/' element={<TaskBoard />} />
+          </Route>
           <Route path='/login' element={<Login />} />
           <Route path='/sign-up' element={<Signup />} />
         </Routes>
