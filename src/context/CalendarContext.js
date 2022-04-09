@@ -7,16 +7,18 @@ export const CalendarContextProvider = ({ children }) => {
   const [refresh, setRefresh] = useState(true)
   const [checkStatus, setCheckStatus] = useState(true)
 
+  const auth = getAuth()
   const [SignedIn, setSignedIn] = useState(false)
   useEffect(() => {
-    const auth = getAuth()
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setSignedIn(true)
+      } else {
+        setSignedIn(false)
       }
       setCheckStatus(false)
     })
-  })
+  }, [auth])
   const fetchImage = () => {
     let randomValue = Math.floor(Math.random() * 999)
     console.log('Fetching')

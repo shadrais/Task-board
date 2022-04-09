@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-
+import { useEffect, useState, useContext } from 'react'
+import CalendarContext from '../context/CalendarContext'
+import { getAuth } from 'firebase/auth'
 import {
   updateDoc,
   doc,
@@ -16,8 +16,9 @@ import { RiDeleteBin5Fill } from 'react-icons/ri'
 
 const GetTask = () => {
   const [data, setData] = useState(null)
-  const auth = getAuth()
 
+  const { SignedIn } = useContext(CalendarContext)
+  const auth = getAuth()
   useEffect(() => {
     const fetchData = async () => {
       const collectioRef = collection(db, 'tasks')
@@ -37,10 +38,11 @@ const GetTask = () => {
         setData(tasks)
       })
     }
-    onAuthStateChanged(auth, (user) => {
+    if (SignedIn) {
+      console.log(console.log(SignedIn))
       fetchData()
-    })
-  }, [auth, auth.currentUser])
+    }
+  }, [SignedIn])
 
   if (!data) {
     return <progress className='progress w-56'></progress>

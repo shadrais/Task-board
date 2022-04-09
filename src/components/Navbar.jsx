@@ -11,8 +11,8 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const signOut = (e) => {
+    navigate('/login')
     auth.signOut()
-    navigate('/')
   }
 
   return (
