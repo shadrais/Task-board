@@ -38,7 +38,7 @@ const AddTask = () => {
       <input
         type='text'
         placeholder='Add Task'
-        className='input input-bordered input-primary basis-4/5 sm:max-w-full  ml-6  max-w-xs text-black'
+        className='input input-bordered input-secondary  text-lg basis-4/5 sm:max-w-full  ml-6  max-w-xs '
         value={task}
         onChange={(e) => {
           setFeild((prevState) => ({ ...prevState, task: e.target.value }))
